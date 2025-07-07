@@ -123,11 +123,19 @@ public final class BTraceRuntimeImpl_11 extends BTraceRuntimeImplBase {
               Map.of(
                       "java.lang", myModules,
                       "jdk.internal.reflect", myModules,
-                      "jdk.internal.perf", myModules,
-                      "sun.security.action", myModules),
+                      "jdk.internal.perf", myModules),
               Map.of("java.lang", myModules),
               Collections.emptySet(),
               Collections.emptyMap());
+      if (javaBaseMod.getPackages().contains("sun.security.action")) {
+        instr.redefineModule(
+                javaBaseMod,
+                Collections.emptySet(),
+                Map.of("sun.security.action", myModules),
+                Map.of("java.lang", myModules),
+                Collections.emptySet(),
+                Collections.emptyMap());
+      }
       instr.redefineModule(
           jfrMod, // jdk.jfr
           Collections.emptySet(),
