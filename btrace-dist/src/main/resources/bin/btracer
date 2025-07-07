@@ -40,6 +40,7 @@ JAVA_ARGS="-XX:+IgnoreUnrecognizedVMOptions"
 if [ -d "${JAVA_HOME}/jmods" ]; then
   JAVA_ARGS="$JAVA_ARGS -XX:+AllowRedefinitionToAddDeleteMethods"
   JAVA_ARGS="$JAVA_ARGS --add-exports jdk.internal.jvmstat/sun.jvmstat.monitor=ALL-UNNAMED"
+  JAVA_ARGS="$JAVA_ARGS --add-opens java.base/java.lang=ALL-UNNAMED"
 fi
 
 OPTIONS=
